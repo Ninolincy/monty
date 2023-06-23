@@ -15,7 +15,7 @@ instruction_t *read_line(char *word)
 	instruction = malloc(sizeof(*instruction));
 	if (instruction == NULL)
 	{
-		fprintf(stdout, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 

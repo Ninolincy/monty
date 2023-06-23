@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
-#define UNUSED(x);
+#define UNUSED(x) (void)(x)
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,8 +42,9 @@ typedef struct instruction_s
 size_t getline(char **lineptr, size_t *n, FILE *stream);
 instruction_t *read_line(char *word);
 char *get_opcode(char *string);
-int is_int(char *str);
+bool is_int(const char *str);
 int main(int argc, char **argv);
+void free_memory(stack_t *temp);
 void push(__attribute__((unused))stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, __attribute__((unused))unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
@@ -50,5 +52,6 @@ void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+void execute_instructions(FILE *file);
 
 #endif /**MONTY_H**/

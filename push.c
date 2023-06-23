@@ -16,20 +16,25 @@ int new_value;
 
 push_arg = strtok(NULL, "\n\t");
 
-if (!is_int(push_arg))
+if (!is_int(push_arg) || push_arg == NULL)
 {
-fprintf(stdout, "L%u: usage: push integer\n", line_number);
+fprintf(stderr, "L%u: usage: push integer\n", line_number);
 exit(EXIT_FAILURE);
 }
 new_value = atoi(push_arg);
 new = malloc(sizeof(stack_t));
 if (new == NULL)
 {
-fprintf(stdout, "Error: malloc failed\n");
+fprintf(stderr, "Error: malloc failed\n");
 exit(EXIT_FAILURE);
 }
 new->n = new_value;
 new->prev = NULL;
-new->next = NULL;
-/**Check if stack is empty*/
+new->next = *stack;
+
+/*if (*stack != NULL)
+{
+(*stack)->prev = new_value;
+}
+*stack = new_value;*/
 }

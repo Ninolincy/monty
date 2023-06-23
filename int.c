@@ -7,21 +7,20 @@
  * Return: 1 for true, 0 for false
  */
 
-int is_int(char *str)
+bool is_int(const char *str)
 {
-int i = 0;
+	if (str == NULL || *str == '\0')
+		return (false);
 
-if (str == NULL)
-	return (0);
+	if (*str == '+' || *str == '-')
+		str++;
 
-if (*str == '-')
-	i++;
+	while (*str != '\0')
+	{
+		if (*str < '0' || *str > '9')
+			return (false);
+		str++;
+	}
 
-for (; str[i]; i++)
-{
-	if (!isdigit(str[i]))
-		return (0);
-}
-
-return (1);
+	return (true);
 }
