@@ -8,35 +8,33 @@ static instruction_t instructions[] = {
 	{"swap", swap},
 	{"add", add},
 	{"nop", nop},
-    {NULL, NULL}
+	{NULL, NULL}
 };
 
 /**
  * free_memory - free stack memory
  * @temp: current stack
- * 
  * Return: void
 */
 void free_memory(stack_t *temp)
 {
 	while (temp != NULL)
 	{
-		stack_t *temp = temp;
+		stack_t *current = temp;
 
-		temp = temp->next;
-		free(temp);
+		temp = current->next;
+		free(current);
 	}
 }
 
 /**
  * execute_instructions - Execute monty bytecodes
  * @file: File pointer
- * 
  * Return: void
 */
 void execute_instructions(FILE *file)
 {
-	char buffer[256];
+	char buffer[1024];
 	int line_number = 1, i, flag = 0;
 	stack_t *temp;
 	stack_t *stack = NULL;
@@ -45,9 +43,8 @@ void execute_instructions(FILE *file)
 	{
 		char *opcode;
 
-		buffer[strcspn(buffer, "\n")] = '\0';
-		opcode = strtok(buffer, " ");
-
+		opcode = strtok(buffer, " \n\t");
+		/*printf("opcode is %s\n", opcode);*/
 		if (opcode == NULL)
 		{
 			fprintf(stderr, "L%u: unknown instruction\n",

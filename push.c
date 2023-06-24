@@ -14,8 +14,9 @@ stack_t *new;
 char *push_arg;
 int new_value;
 
-push_arg = strtok(NULL, "\n\t");
-
+/*printf("push running\n");*/
+push_arg = strtok(NULL, " \n\t");
+/*printf("%s\n", push_arg);*/
 if (!is_int(push_arg) || push_arg == NULL)
 {
 fprintf(stderr, "L%u: usage: push integer\n", line_number);
@@ -32,9 +33,9 @@ new->n = new_value;
 new->prev = NULL;
 new->next = *stack;
 
-/*if (*stack != NULL)
+if (stack != NULL && (*stack) != NULL)
 {
-(*stack)->prev = new_value;
+(*stack)->prev = new;
 }
-*stack = new_value;*/
+*stack = new;
 }
